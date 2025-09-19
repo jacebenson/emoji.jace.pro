@@ -33,19 +33,48 @@ description: "Find and copy emojis easily with our comprehensive emoji database"
                 <span class="category-count">{{ emojis.groups['Animals & Nature'].length }} emojis</span>
             </div>
         </a>
-        {% for groupName, groupEmojis in emojis.groups %}
-        {% if groupName != 'Smileys & Emotion' and groupName != 'People & Body' and groupName != 'Animals & Nature' %}
-        <a href="#" class="category-card">
-            <div class="category-emoji">
-                {% if groupEmojis[0] %}{{ groupEmojis[0].char }}{% endif %}
-            </div>
+        <a href="/category/food-drink/" class="category-card">
+            <div class="category-emoji">🍕</div>
             <div class="category-info">
-                <h3>{{ groupName }}</h3>
-                <span class="category-count">{{ groupEmojis.length }} emojis</span>
+                <h3>Food & Drink</h3>
+                <span class="category-count">{{ emojis.groups['Food & Drink'].length }} emojis</span>
             </div>
         </a>
-        {% endif %}
-        {% endfor %}
+        <a href="/category/travel-places/" class="category-card">
+            <div class="category-emoji">✈️</div>
+            <div class="category-info">
+                <h3>Travel & Places</h3>
+                <span class="category-count">{{ emojis.groups['Travel & Places'].length }} emojis</span>
+            </div>
+        </a>
+        <a href="/category/activities/" class="category-card">
+            <div class="category-emoji">⚽</div>
+            <div class="category-info">
+                <h3>Activities</h3>
+                <span class="category-count">{{ emojis.groups['Activities'].length }} emojis</span>
+            </div>
+        </a>
+        <a href="/category/objects/" class="category-card">
+            <div class="category-emoji">💻</div>
+            <div class="category-info">
+                <h3>Objects</h3>
+                <span class="category-count">{{ emojis.groups['Objects'].length }} emojis</span>
+            </div>
+        </a>
+        <a href="/category/symbols/" class="category-card">
+            <div class="category-emoji">❤️</div>
+            <div class="category-info">
+                <h3>Symbols</h3>
+                <span class="category-count">{{ emojis.groups['Symbols'].length }} emojis</span>
+            </div>
+        </a>
+        <a href="/category/flags/" class="category-card">
+            <div class="category-emoji">🏳️</div>
+            <div class="category-info">
+                <h3>Flags</h3>
+                <span class="category-count">{{ emojis.groups['Flags'].length }} emojis</span>
+            </div>
+        </a>
     </div>
 </div>
 
