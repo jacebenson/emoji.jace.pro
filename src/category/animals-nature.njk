@@ -1,0 +1,31 @@
+---
+layout: base.njk
+title: "Animals & Nature Emojis"
+description: "Browse emojis in the Animals & Nature category"
+---
+
+<div class="category-header">
+    <nav class="breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Animals & Nature</span>
+    </nav>
+    
+    <h1>Animals & Nature</h1>
+    <p>{{ emojis.groups['Animals & Nature'].length }} emojis in this category</p>
+</div>
+
+<div class="emoji-grid" id="emoji-grid">
+    {% for emoji in emojis.groups['Animals & Nature'] %}
+    <div class="emoji-item" data-emoji="{{ emoji.char }}" data-name="{{ emoji.name }}" data-codepoints="{{ emoji.codepoints }}">
+        <span class="emoji-char">{{ emoji.char }}</span>
+        <span class="emoji-name">{{ emoji.name }}</span>
+        <span class="emoji-meta">
+            <span class="emoji-version">{{ emoji.version }}</span>
+            {% if emoji.subgroup %}
+            <span class="emoji-subgroup">{{ emoji.subgroup }}</span>
+            {% endif %}
+        </span>
+    </div>
+    {% endfor %}
+</div>

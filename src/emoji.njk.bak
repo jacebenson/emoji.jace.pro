@@ -1,0 +1,84 @@
+---
+layout: base.njk
+pagination:
+  data: emojis.all
+  size: 1
+  alias: emoji
+permalink: "/emoji/{{ emoji.slug }}/"
+eleventyComputed:
+  title: "{{ emoji.char }} {{ emoji.name }}"
+  description: "Copy the {{ emoji.name }} emoji {{ emoji.char }} to your clipboard. Unicode codepoints: {{ emoji.codepoints }}"
+---
+
+<div class="emoji-detail">
+    <nav class="breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="/category/{{ emoji.group | slugify }}/">{{ emoji.group }}</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>{{ emoji.name }}</span>
+    </nav>
+    
+    <div class="emoji-hero">
+        <div class="emoji-large" data-emoji="{{ emoji.char }}" data-name="{{ emoji.name }}" data-codepoints="{{ emoji.codepoints }}">
+            {{ emoji.char }}
+        </div>
+        <div class="emoji-info">
+            <h1>{{ emoji.name }}</h1>
+            <button class="copy-btn-large" data-emoji="{{ emoji.char }}" data-name="{{ emoji.name }}">
+                Copy {{ emoji.char }}
+            </button>
+        </div>
+    </div>
+    
+    <div class="emoji-details">
+        <div class="detail-section">
+            <h2>Details</h2>
+            <dl class="detail-list">
+                <dt>Unicode Codepoints</dt>
+                <dd>{{ emoji.codepoints }}</dd>
+                
+                <dt>Unicode Version</dt>
+                <dd>{{ emoji.version }}</dd>
+                
+                <dt>Category</dt>
+                <dd>
+                    <a href="/category/{{ emoji.group | slugify }}/">{{ emoji.group }}</a>
+                </dd>
+                
+                {% if emoji.subgroup %}
+                <dt>Subcategory</dt>
+                <dd>{{ emoji.subgroup }}</dd>
+                {% endif %}
+                
+                <dt>Status</dt>
+                <dd>{{ emoji.status }}</dd>
+            </dl>
+        </div>
+        
+        <div class="detail-section">
+            <h2>Copy Options</h2>
+            <div class="copy-options">
+                <button class="copy-option" data-copy="{{ emoji.char }}">
+                    <span class="copy-label">Emoji</span>
+                    <span class="copy-value">{{ emoji.char }}</span>
+                </button>
+                
+                <button class="copy-option" data-copy="{{ emoji.codepoints }}">
+                    <span class="copy-label">Codepoints</span>
+                    <span class="copy-value">{{ emoji.codepoints }}</span>
+                </button>
+                
+                <button class="copy-option" data-copy="U+{{ emoji.codepoints | replace(' ', ' U+') }}">
+                    <span class="copy-label">Unicode</span>
+                    <span class="copy-value">U+{{ emoji.codepoints | replace(' ', ' U+') }}</span>
+                </button>
+                
+                <button class="copy-option" data-copy="{{ emoji.name }}">
+                    <span class="copy-label">Name</span>
+                    <span class="copy-value">{{ emoji.name }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

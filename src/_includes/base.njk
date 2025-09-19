@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }} - {% endif %}Emoji Finder</title>
+    <meta name="description" content="{% if description %}{{ description }}{% else %}Find and copy emojis easily with our comprehensive emoji database{% endif %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😀</text></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% if title %}{{ title }} - {% endif %}Emoji Finder">
+    <meta property="og:description" content="{% if description %}{{ description }}{% else %}Find and copy emojis easily with our comprehensive emoji database{% endif %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url }}">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{% if title %}{{ title }} - {% endif %}Emoji Finder">
+    <meta name="twitter:description" content="{% if description %}{{ description }}{% else %}Find and copy emojis easily with our comprehensive emoji database{% endif %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="nav-brand">
+                    <span class="nav-emoji">😀</span>
+                    <span class="nav-title">Emoji Finder</span>
+                </a>
+                <div class="nav-search">
+                    <input type="text" id="emoji-search" placeholder="Search emojis..." class="search-input">
+                    <button type="button" id="clear-search" class="clear-btn" title="Clear search">×</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            {{ content | safe }}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Emoji data from <a href="https://unicode.org/Public/emoji/latest/emoji-test.txt" target="_blank" rel="noopener">Unicode.org</a></p>
+            <p>Last updated: {{ emojis.lastUpdated }}</p>
+        </div>
+    </footer>
+
+    <!-- Toast notification for copy feedback -->
+    <div id="toast" class="toast">
+        <span id="toast-message"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Global emoji data for search
+        window.EMOJI_DATA = {{ emojis.all | dump | safe }};
+    </script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

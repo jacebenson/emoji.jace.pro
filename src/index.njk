@@ -1,0 +1,69 @@
+---
+layout: base.njk
+title: "Home"
+description: "Find and copy emojis easily with our comprehensive emoji database"
+---
+
+<div class="hero">
+    <h1>Find & Copy Emojis</h1>
+    <p>Browse {{ emojis.all.length }} emojis from the latest Unicode standard</p>
+</div>
+
+<div class="emoji-categories">
+    <h2>Browse by Category</h2>
+    <div class="category-grid">
+        <a href="/category/smileys-emotion/" class="category-card">
+            <div class="category-emoji">😀</div>
+            <div class="category-info">
+                <h3>Smileys & Emotion</h3>
+                <span class="category-count">{{ emojis.groups['Smileys & Emotion'].length }} emojis</span>
+            </div>
+        </a>
+        <a href="/category/people-body/" class="category-card">
+            <div class="category-emoji">👨</div>
+            <div class="category-info">
+                <h3>People & Body</h3>
+                <span class="category-count">{{ emojis.groups['People & Body'].length }} emojis</span>
+            </div>
+        </a>
+        <a href="/category/animals-nature/" class="category-card">
+            <div class="category-emoji">🐶</div>
+            <div class="category-info">
+                <h3>Animals & Nature</h3>
+                <span class="category-count">{{ emojis.groups['Animals & Nature'].length }} emojis</span>
+            </div>
+        </a>
+        {% for groupName, groupEmojis in emojis.groups %}
+        {% if groupName != 'Smileys & Emotion' and groupName != 'People & Body' and groupName != 'Animals & Nature' %}
+        <a href="#" class="category-card">
+            <div class="category-emoji">
+                {% if groupEmojis[0] %}{{ groupEmojis[0].char }}{% endif %}
+            </div>
+            <div class="category-info">
+                <h3>{{ groupName }}</h3>
+                <span class="category-count">{{ groupEmojis.length }} emojis</span>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="popular-emojis">
+    <h2>Popular Emojis</h2>
+    <div class="emoji-grid" id="emoji-grid">
+        {% for emoji in emojis.all | slice(0, 50) %}
+        <div class="emoji-item" data-emoji="{{ emoji.char }}" data-name="{{ emoji.name }}" data-codepoints="{{ emoji.codepoints }}">
+            <span class="emoji-char">{{ emoji.char }}</span>
+            <span class="emoji-name">{{ emoji.name }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="search-results" id="search-results" style="display: none;">
+    <h2>Search Results</h2>
+    <div class="emoji-grid" id="search-grid">
+        <!-- Search results will be populated by JavaScript -->
+    </div>
+</div>

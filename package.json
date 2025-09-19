@@ -1,0 +1,26 @@
+{
+  "name": "emoji-finder",
+  "version": "1.0.0",
+  "description": "An 11ty-powered emoji finder and copy utility",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-navigation": "^1.0.4",
+    "node-fetch": "^3.3.2"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "keywords": [
+    "emoji",
+    "unicode",
+    "11ty",
+    "static-site"
+  ],
+  "author": "Jace",
+  "license": "MIT"
+}

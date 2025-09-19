@@ -1,0 +1,39 @@
+---
+layout: base.njk
+pagination:
+  data: emojis.groups
+  size: 1
+  alias: groupData
+permalink: "/category/{{ groupData[0] | slugify }}/"
+eleventyComputed:
+  title: "{{ groupData[0] }} Emojis"
+  description: "Browse {{ groupData[1].length }} emojis in the {{ groupData[0] }} category"
+  groupName: "{{ groupData[0] }}"
+  groupEmojis: "{{ groupData[1] }}"
+---
+
+<div class="category-header">
+    <nav class="breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>{{ groupName }}</span>
+    </nav>
+    
+    <h1>{{ groupName }}</h1>
+    <p>{{ groupEmojis.length }} emojis in this category</p>
+</div>
+
+<div class="emoji-grid" id="emoji-grid">
+    {% for emoji in groupEmojis %}
+    <div class="emoji-item" data-emoji="{{ emoji.char }}" data-name="{{ emoji.name }}" data-codepoints="{{ emoji.codepoints }}">
+        <span class="emoji-char">{{ emoji.char }}</span>
+        <span class="emoji-name">{{ emoji.name }}</span>
+        <span class="emoji-meta">
+            <span class="emoji-version">{{ emoji.version }}</span>
+            {% if emoji.subgroup %}
+            <span class="emoji-subgroup">{{ emoji.subgroup }}</span>
+            {% endif %}
+        </span>
+    </div>
+    {% endfor %}
+</div>
